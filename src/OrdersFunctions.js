@@ -23,11 +23,12 @@ export const addOrder = (firstname, lastname, email, phonenumber, scheduleddate,
       phonenumber: phonenumber, 
       scheduleddate: scheduleddate, 
       streetaddress: streetaddress, 
-      city_id: city_id, 
-      zipcode: zipcode
+      city_id: 3, 
+      zipcode: zipcode,
+      statusorder_id: 1
     },
     {
-      headers: {'Content-Type': 'appilication/json'}
+      headers: {'Content-Type': 'application/json'}
     }
   )
   .then( res => {
@@ -36,7 +37,7 @@ export const addOrder = (firstname, lastname, email, phonenumber, scheduleddate,
 }
 
 export const deleteOrder = id => {
-  axios.delete(`${BASE_URL}/${id}`, {
+  return axios.delete(`${BASE_URL}/${id}`, {
     headers: {'Content-Type': 'application/json'}
   }).then(res => {
     console.log(res);
