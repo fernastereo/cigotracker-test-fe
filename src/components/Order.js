@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getOrders, addOrder, updateOrder, deleteOrder } from './OrdersFunctions';
 import Location from './Location';
+import StatusOrder from './StatusOrder';
 
 class Order extends Component{
   constructor(){
@@ -112,7 +113,7 @@ class Order extends Component{
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <form className="mb-4" onSubmit={this.onSubmit}>
+            <form className="mb-4" onSubmit={this.onSubmit} novalidate>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label htmlFor="firstname">First Name</label>
@@ -188,16 +189,14 @@ class Order extends Component{
                     <td className="text-center">{item.lastname}</td>
                     <td className="text-center">{item.scheduleddate}</td>
                     <td className="text-center">
-                      <button href="" 
-                              className="btn btn-sm btn-info mr-1" 
-                              disabled={this.state.editDisabled}
-                              onClick={this.onEdit.bind(this, item.id)}>Edit
-                      </button>
-                      <button href="" 
-                              className="btn btn-sm btn-danger" 
-                              disabled={this.state.editDisabled}
-                              onClick={this.onDelete.bind(this, item.id)}>Delete
-                      </button>
+                      <div className="d-flex justify-content-around">
+                        <StatusOrder></StatusOrder>
+                        <button href="" 
+                                className="btn btn-sm btn-danger" 
+                                disabled={this.state.editDisabled}
+                                onClick={this.onDelete.bind(this, item.id)}>Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
