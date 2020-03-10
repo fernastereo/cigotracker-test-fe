@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getOrders, addOrder, updateOrder, deleteOrder } from './OrdersFunctions';
+import Location from './Location';
 
 class Order extends Component{
   constructor(){
@@ -138,61 +139,41 @@ class Order extends Component{
                   <input type="date" className="form-control form-control-sm" id="scheduleddate" name="scheduleddate" value={this.state.scheduleddate || ''} onChange={this.onChange.bind(this)}></input>
                 </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="streetaddress">Street Address</label>
-                <input type="text" className="form-control form-control-sm" id="streetaddress" name="streetaddress" value={this.state.streetaddress || ''} onChange={this.onChange.bind(this)}></input>
-              </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label htmlFor="country">Country</label>
-                  <select id="country" className="form-control form-control-sm">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
-                <div className="form-group col-md-6">
-                  <label htmlFor="province">Province</label>
-                  <select id="province" className="form-control form-control-sm">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label htmlFor="city_id">City</label>
-                  <select id="city_id" className="form-control form-control-sm">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </select>
+                  <label htmlFor="streetaddress">Street Address</label>
+                  <input type="text" className="form-control form-control-sm" id="streetaddress" name="streetaddress" value={this.state.streetaddress || ''} onChange={this.onChange.bind(this)}></input>
                 </div>
                 <div className="form-group col-md-6">
                   <label htmlFor="zipcode">Zip Code</label>
                   <input type="text" className="form-control form-control-sm" id="zipcode" name="zipcode" value={this.state.zipcode || ''} onChange={this.onChange.bind(this)}></input>
                 </div>
               </div>
-
-              {!this.state.editDisabled ? (
-                <button type="submit" 
-                        className="btn btn-success btn-block" 
-                        onClick={this.onSubmit.bind(this)}>Save
+              <Location></Location>
+              <div className="form-row d-flex flex-row-reverse">
+                {!this.state.editDisabled ? (
+                  <button type="submit" 
+                          className="btn btn-sm btn-success" 
+                          onClick={this.onSubmit.bind(this)}>Save
+                  </button>
+                ) : (
+                  ''
+                )}
+                {this.state.editDisabled ? (
+                  <button type="submit" 
+                          className="btn btn-sm btn-primary" 
+                          onClick={this.onUpdate.bind(this)}>Update
+                  </button>
+                ) : (
+                  ''
+                )}
+                <button className="btn btn-sm btn-danger mr-4">Cancel
                 </button>
-              ) : (
-                ''
-              )}
-              {this.state.editDisabled ? (
-                <button type="submit" 
-                        className="btn btn-primary btn-block" 
-                        onClick={this.onUpdate.bind(this)}>Update
-                </button>
-              ) : (
-                ''
-              )}
-
+              </div>
             </form>
 
             <table className="table table-hover table-sm">
-              <thead>
+              <thead className="thead-light">
                 <tr>
                   <td className="text-center">First Name</td>
                   <td className="text-center">Last Name</td>
